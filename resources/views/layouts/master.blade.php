@@ -11,7 +11,10 @@
 </head>
 
 <body>
-   @yield('content') {{-- memanggil komponen dr page lain agar bisa digabungkan --}}
+    <div class="container mt-5">
+        @include('layouts.navbar')
+        @yield('content') {{-- memanggil komponen dr page lain agar bisa digabungkan --}}
+    </div>
 </body>
 
 </html>
