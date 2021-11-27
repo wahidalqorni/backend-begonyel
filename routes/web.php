@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\InputanController;
+use App\Http\Controllers\LuasSegitigaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,19 +24,29 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function(){
-    return view('home');
+    return view('home',[
+        'titlebar' => 'Begonyel - Home Page',
+        'title'    => 'Halaman Home'
+    ]);
 });
 
 Route::get('home', function(){
-    return view('home');
+    return view('home', [
+        'titlebar' => 'Begonyel - Home Page',
+        'title'    => 'Halaman Home'
+    ] );
 });
 
 Route::get('about', function(){
-    return view('about');
+    return view('about', [
+        //key,        value 
+        'titlebar' => 'Begonyel - About Page',
+        'title'    => 'Halaman About'
+    ]);
 });
 
 Route::get('contact', function(){
-    return view('contact');
+    return view('contact', ['titlebar' => 'Begonyel - Contact Page']);
 });
 
 Route::get('latihan1', function(){
@@ -44,3 +56,6 @@ Route::get('latihan1', function(){
 Route::get('latihan2', function(){
     return view('latihanview.latihan2');
 })->name('latihan-2');
+
+Route::get('inputan', [InputanController::class, 'index'])->name('inputan');
+Route::get('segitiga', [LuasSegitigaController::class, 'index'])->name('luas-segitiga');
