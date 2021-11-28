@@ -13,20 +13,21 @@ class LuasSegitigaController extends Controller
      */
     public function index(Request $request)
     {
+        // dd($request->all());
+        //persiapan data yg akan dikirim ke view
         $titleBar = 'Begonyel - Luas Segitiga';
         $title = 'Luas Segitiga';
 
         //saat form/view belum menerima request data
-        $alas = '';
-        $tinggi = '';
-        $luas = '';
-
+        $alas = 0;
+        $tinggi = 0;
+        $luas = 0;
 
         //form telah menerima data request
         if ($request->alas != '' && $request->tinggi != '' || $request->alas != null && $request->tinggi != null) {
             $alas = $request->alas;
             $tinggi = $request->tinggi;
-            $luas = 1/2 * ($alas * $tinggi);
+            $luas = 1/2 * $alas * $tinggi;
         }
 
         //mengirim data ke view

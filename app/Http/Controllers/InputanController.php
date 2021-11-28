@@ -25,11 +25,21 @@ class InputanController extends Controller
         //saat form/view belum menerima request data
         $nama_produk = '';
         $harga = '';
+
+        // inputan lebar dan panjang
+        $lebar = 0;
+        $panjang = 0;
+        $luas = 0;
         
         //form telah menerima data request
-        if ($request->nama_produk != '' && $request->harga != '' || $request->nama_produk != null && $request->harga != null) {
+        if ($request->nama_produk != '' && $request->harga != '' && $request->lebar != '' && $request->panjang != '' || $request->nama_produk != null && $request->harga != null && $request->lebar != null && $request->panjang != null   ) {
+            
             $nama_produk = $request->nama_produk;
             $harga = $request->harga;
+            $lebar = $request->lebar;
+            $panjang = $request->panjang;
+
+            $luas = $this->luasPersegi($panjang, $lebar);
         }
 
         //mengirim data ke view
@@ -37,8 +47,17 @@ class InputanController extends Controller
             'titlebar' => $titleBar,
             'title' => $title,
             'nama_produk' => $nama_produk,
-            'harga' => $harga, //isi data yg bakal dikirim
+            'harga' => $harga,
+            'luas' => $luas, //isi data yg bakal dikirim
         ]);
+    }
+
+    //fungsi menghitung luas persegi pjg
+    public function luasPersegi($panjang, $lebar){
+        //rumus hitung luas persegi
+        $luas = $panjang * $lebar;
+
+        return $luas;
     }
 
     /**
@@ -105,5 +124,12 @@ class InputanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // fungsi cetak nama
+    // fungsi ini akan mencetak(echo) nilai yg diinput ke dalam 
+    // parameter $inputnama (dari browser)
+    public function cetakNama($inputnama) {
+        echo $inputnama;
     }
 }
